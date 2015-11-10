@@ -3,33 +3,142 @@ include 'class.Queue.inc'
 
 $users = new userQueue();
 
-//Adding 1 to 6 users
 
-for($i = 1; $i <= 6; $i++) {
-    $users->add($i);
+
+// Tester Section
+
+//Create new user queue
+$users = new userQueue();
+
+//Actions Section
+
+/*
+ACTION 1
+ADD,1
+ADD,2
+ADD,3
+ADD,4
+ADD,5
+ADD,6
+*/
+
+//Ading a single user
+$new_user= $users->add(1);
+echo /* Action 1 */ __FILE__ . ':'. __LINE__ . '<pre> *** Adding a single user ***<br />'; 
+echo 'User Position:  '.$new_user. '<br />';
+
+echo "---   Queue:   ---  <br />";
+print_r($users);
+
+//Adding 2 to 6 users
+
+for($i = 2; $i <= 6; $i++) {
+	$new_user = $users->add($i);
+	echo 'User Position:  '.$new_user. '<br />';
 }
-echo '<pre> ADDING USERS'; print_r($users);
+echo /* Action 1.2 */ __FILE__ . ':'. __LINE__ . '<pre> *** Adding the rest users ***<br />'; 
+print_r($users);
 
-//Remove user
+//Remove user 2
 $user = $users->removeByUser(2);
-echo '<pre> REMOVE USER 2'; print_r($users);
+echo /* Action 2 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove User 2 ***<br />'; 
+print_r($user).'<br />';
 
-//Remove by Position
-$user = $users->removeByPosition(1);
-echo '<pre> REMOVE POSITION 1 --   '; print_r($users);
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
 
-//MOVE
-$user = $users->move(0,2);
-echo '<pre> MOVE POSITIONs 0,2 --   '; print_r($users);
+//Remove user 6
+$user = $users->removeByUser(6);
+echo /* Action 3 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove User 6 ***<br />'; 
+print_r($user).'<br />';
 
-//SWAP 3,1 Guessing is move user 3 to the user 1 position
-$user = $users->swap(0,2);
-echo '<pre> MOVE POSITIONs 0,2 --   '; print_r($users);
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+
+//REMOVE_USER,10
+$user = $users->removeByUser(10);
+echo /* Action 4 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove User 10 ***<br />'; 
+print_r($user);
+
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+
+//MOVE,3,1
+$user = $users->move(3,1);
+echo /* Action 5 */ __FILE__ . ':'. __LINE__ . '<pre> *** Move 3 to 1 ***<br />'; 
+print_r($user);
+
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
 
 //REVERSE
-$users_reverse = $users->reverse();
-echo '<pre> REVERSE QUEUE'; print_r($users_reverse);
+$users = $users->reverse();
+echo /* Action 6 */ __FILE__ . ':'. __LINE__ . '<pre> *** REVERSE ***<br />'; 
+print_r($users);
+
+
+//SWAP 6,1
+$swap = $users->swap(6,1);
+echo /* Action 7 */ __FILE__ . ':'. __LINE__ . '<pre> *** SWAP 6,1 ***<br />'; 
+print_r($swap);
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+
+//Remove Position 3
+//I will -1 here, because I'm reusing removeByPostion in removeByUser'
+$position = 3;
+$user = $users->removeByPosition($position-1);
+echo /* Action 8 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove Position 3 ***<br />'; 
+print_r($user);
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+//REMOVE_USER,1
+$user = $users->removeByUser(1);
+echo /* Action 9 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove User 1 ***<br />'; 
+print_r($user);
+
+
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+
+//REMOVE_POSITION,6
+//I will -1 here, because I'm reusing removeByPostion in removeByUser'
+$position = 6;
+$user = $users->removeByPosition($position-1);
+echo /* Action 8 */ __FILE__ . ':'. __LINE__ . '<pre> *** Remove Position 6 ***<br />'; 
+print_r($user);
+echo "---   Queue:   ---  <br />";
+print_r($users).'<br />';
+
+
+//ADD,7
+//ADD,8 PRINT
+//Ading a single user
+$new_user= $users->add(7);
+echo /* Action 9 */ __FILE__ . ':'. __LINE__ . '<pre> *** Adding User 7 ***<br />'; 
+echo 'User Position:  '.$new_user. '<br />';
+
+echo "---   Queue:   ---  <br />";
+print_r($users);
+
+//Ading a single user
+$new_user= $users->add(8);
+echo /* Action 10 */ __FILE__ . ':'. __LINE__ . '<pre> *** Adding User 8 ***<br />'; 
+echo 'User Position:  '.$new_user. '<br />';
+
+echo "---   Queue:   ---  <br />";
+print_r($users);
 
 //PRINT
-//$users_reverse = $users->printQueue();
+echo /* Action 10 */ __FILE__ . ':'. __LINE__ . '<pre> *** Adding User 8 ***<br />'; 
+echo $users->printPrettyQueue();
 //echo '<pre> REVERSE QUEUE'; $users_reverse;
+
+
+
