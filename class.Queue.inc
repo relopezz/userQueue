@@ -86,7 +86,7 @@ class userQueue {
 			return "Please select a valid position 2";
 		}
 		if ($position1 == $position2) {
-			"Please select different user";
+			"Please select different positions";
 		}
 		$element_postion1 = $this->_queue[$position1];
 		$this->_queue[$position1] = $this->_queue[$position2];
